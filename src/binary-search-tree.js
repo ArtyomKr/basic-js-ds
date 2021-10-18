@@ -6,8 +6,7 @@ const { Node } = require('../extensions/list-tree.js');
 * Implement simple binary search tree according to task description
 * using Node from extensions
 */
-module.exports =
-class BinarySearchTree {
+module.exports = class BinarySearchTree {
   constructor () {
     this.rootNode = new Node(null);
   };
@@ -102,55 +101,45 @@ class BinarySearchTree {
     function removeNode(node) {
       if (node === null) return null;
       node.data = null;
-
     }
   }
 
   min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let minValue = this.rootNode.data;
+
+    findMin(this.rootNode);
+
+    return minValue;
+
+    function findMin(node) {
+      if (node === null) return null;
+      findMin(node.left);
+      findMin(node.right);
+      if (minValue > node.data && node.data !== null) {
+        minValue = node.data;
+      }
+    }
   }
 
   max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let maxValue = this.rootNode.data;
+
+    findMax(this.rootNode);
+
+    return maxValue;
+
+    function findMax(node) {
+      if (node === null) return null;
+      findMax(node.left);
+      findMax(node.right);
+      if (maxValue < node.data && node.data !== null) {
+        maxValue = node.data;
+      }
+    }
   }
 
 };
 
-// const tree = new BinarySearchTree();
-//
-// tree.add(9);
-// tree.add(14);
-// tree.add(2);
-// tree.add(6);
-// tree.add(128);
-// tree.add(8);
-// tree.add(31);
-// tree.add(54);
-// tree.add(1);
-//
-// console.log(JSON.stringify(tree));
-//
-// tree.remove(9);
-// tree.remove(14);
-// tree.remove(2);
-// tree.remove(6);
-// tree.remove(128);
-// tree.remove(8);
-// tree.remove(31);
-// tree.remove(54);
-// tree.remove(1);
-//
-// console.log(JSON.stringify(tree));
-//
-// console.log(tree.has(14));
-// console.log(tree.has(8));
-// console.log(tree.has(9));
-// console.log(tree.has(2));
-// console.log(tree.has(128));
-// console.log(tree.has(31));
-// console.log(tree.has(54));
-// console.log(tree.has(1));
+
 
 
